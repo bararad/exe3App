@@ -63,7 +63,13 @@ export default function SystemAdmin(props) {
 
   return (
     <>
-      <h3></h3>
+      <Button
+      color='error'
+      variant='contained'
+
+      sx={{marginLeft:100,marginBottom:15}}
+      onClick={()=>{navigate('/')}}
+      >disconnect from admin</Button>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 1000 }} aria-label="simple table">
           <TableHead>

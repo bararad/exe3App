@@ -45,7 +45,7 @@ export default function Profile() {
             <Avatar
               alt="User Avatar"
               src={userInSession.userImage}
-              sx={{ width: 150, height: 150, marginRight: 5 }}
+              sx={{ width: 150, height: 150,marginLeft:5, marginRight: 5, borderRadius:20}}
             />
           </Typography>
         </div>
