@@ -221,7 +221,7 @@ export default function EditDetails(props) {
 
 
   //creating user if all the inputs valid     
-  const registerUser = () => {
+  const editUser = () => {
     //creating array of userError and user to check that all fileds were validated and aren't empty
     let validations = Object.values(userError);
     let userFildes = Object.values(user);
@@ -254,26 +254,16 @@ export default function EditDetails(props) {
       console.log('No validation errors');
       Swal.fire({
         icon: "success",
-        title: "User created!",
-        text: "Now you can login",
+        title: "User updated!",        
       });
+      
       //send user obj to add it to users list
-      props.send2Parent(user);
-      clearFileds();
+      props.send2ParentEditedUser(user);
     }
   }
 
 
 
-  const editUser= ()=> {
-    //creating array of userError and user to check that all fileds were validated and aren't empty
-    let validations = Object.values(userError);
-    let userFildes = Object.values(user);
-
-    console.log('validations: ', validations);
-    console.log('userFildes: ', userFildes);
-
-  }
 
   return (
     <>
