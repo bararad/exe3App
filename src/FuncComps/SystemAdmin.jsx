@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Avatar, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 export default function SystemAdmin(props) {
   const users = props.users;
 
@@ -56,11 +56,15 @@ export default function SystemAdmin(props) {
                 <TableCell align="right">{row.address}</TableCell>
                 <TableCell align="right">{row.email}</TableCell>
                 <TableCell align="right">
-                  <Button variant="contained" color="primary">
+                  <Button 
+                  variant="contained" 
+                  color="primary"
+                  onClick={Edituser}>
                   <EditIcon/>
                   </Button>
-                  <Button variant="contained" color="error">
-                    Delete User
+                  <Button variant="contained" color="error"
+                  sx={{margin:1}}>
+                    <DeleteForeverIcon/>
                   </Button>
                 </TableCell>
               </TableRow>
