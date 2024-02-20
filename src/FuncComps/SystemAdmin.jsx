@@ -9,13 +9,12 @@ import Paper from '@mui/material/Paper';
 import { Avatar, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useNavigate } from 'react-router-dom';
 export default function SystemAdmin(props) {
+
+
   const users = props.users;
-
-  const createData = (image, username, fullname, dOfBirth, address, email) => {
-    return { image, username, fullname, dOfBirth, address, email };
-  };
-
+  const navigate = useNavigate();
   const createRows = (users) => {
     return users.map((user) => ({
       image: user.userImage,
@@ -29,12 +28,21 @@ export default function SystemAdmin(props) {
 
   const rows = createRows(users);
 
-  const Edituser=()=>{
-    
+  const editUser = (userMail) => {
+    let editUser = users.find(user => user.userEmail === userMail);
+    sessionStorage.setItem("", JSON.stringify(editUser));
+    navigate('/EditDetails');
+
+
+  }
+  const deleteUser = (userMail) => {
+
+
   }
 
   return (
     <>
+      <h3></h3>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 1000 }} aria-label="simple table">
           <TableHead>
@@ -45,7 +53,7 @@ export default function SystemAdmin(props) {
               <TableCell align="right">Date of Birth</TableCell>
               <TableCell align="right">Address</TableCell>
               <TableCell align="right">Email</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -54,21 +62,22 @@ export default function SystemAdmin(props) {
                 <TableCell>
                   <Avatar alt={row.username} src={row.image} />
                 </TableCell>
-                <TableCell component="th" scope="row">{row.username}</TableCell>
+                <TableCell scope="row">{row.username}</TableCell>
                 <TableCell align="right">{row.fullname}</TableCell>
                 <TableCell align="right">{row.dOfBirth}</TableCell>
                 <TableCell align="right">{row.address}</TableCell>
                 <TableCell align="right">{row.email}</TableCell>
                 <TableCell align="right">
-                  <Button 
-                  variant="contained" 
-                  color="primary"
-                  onClick={Edituser}>
-                  <EditIcon/>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={editUser(row.email)}>
+                    <EditIcon />
                   </Button>
                   <Button variant="contained" color="error"
-                  sx={{margin:1}}>
-                    <DeleteForeverIcon/>
+                    onClick={deleteUser(row.email)}
+                    sx={{ margin: 1 }}>
+                    <DeleteForeverIcon />
                   </Button>
                 </TableCell>
               </TableRow>

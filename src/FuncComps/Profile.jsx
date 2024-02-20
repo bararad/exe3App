@@ -19,7 +19,8 @@ export default function Profile() {
   let adress = userInSession.userStreet + " " + userInSession.userHomeNum + "," + userInSession.userCity
   let fullname = (userInSession.userFirstName + " " + userInSession.userLastName);
   const onUpdateClick = () => {
-    navigate('/EditDetails')
+    let str='/Profile'
+    navigate('/EditDetails',{state:str})
 
   }
   const onToGameClick = () => {

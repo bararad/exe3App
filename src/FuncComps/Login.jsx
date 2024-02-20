@@ -7,12 +7,13 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function Login(props) {
     const navigate = useNavigate();
     const [userName, setUserName] = useState({ name: '', err: false, errMsg: '' });
     const [password, setPassword] = useState({ pw: '', err: false, errMsg: '' });
     const users = props.users;
-
+    
     const validateUserName = (e) => {
         let text = e.target.value;
         const regex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};:'",.<>\/?]{1,60}$/;
