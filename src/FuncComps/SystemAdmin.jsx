@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,8 +10,9 @@ import { Avatar, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useNavigate } from 'react-router-dom';
-export default function SystemAdmin(props) {
+import Swal from 'sweetalert2';
 
+export default function SystemAdmin(props) {
 
   const users = props.users;
   const navigate = useNavigate();
@@ -38,10 +39,27 @@ export default function SystemAdmin(props) {
     let str = '/SystemAdmin';
     navigate('/EditDetails', { state: str });
   }
-  const deleteUser = (userMail) => {
 
+  const deleteUser = (userMail) => () => {
+    // filter out the user with matching mail 
+    const updatedUsersList = users.filter(user => user.userEmail !== userMail);
+    console.log(updatedUsersList);
+    Swal.fire({
+      icon: "info",
+      title: "are you sure?",
+      confirmButtonText: 'yes',
+      cancelButtonText: 'no',
+      showCancelButton: true,
 
-  }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        props.deleteUserinPar(updatedUsersList);
+      }
+      else{
+        return;
+      }
+    });
+  };
 
   return (
     <>

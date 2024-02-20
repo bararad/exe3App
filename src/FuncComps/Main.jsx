@@ -4,7 +4,7 @@ import Login from './Login';
 import Profile from './Profile';
 import EditDetails from './EditDetails';
 import SystemAdmin from './SystemAdmin';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 export default function Main() {
 
@@ -21,25 +21,31 @@ export default function Main() {
         setUsersList(newUsers);
     }
 
-    const updateUsersList=(updatedUser)=>{
-        
+    const updateUsersList = (updatedUser) => {
+
         let foundUser = usersList.find(user => user.userEmail === updatedUser.userEmail);
         let index = usersList.indexOf(foundUser);
-        
-        let tempUsersList= [...usersList];
-        tempUsersList[index]=updatedUser;       
+
+        let tempUsersList = [...usersList];
+        tempUsersList[index] = updatedUser;
 
         //update new users array
         setUsersList(tempUsersList);
 
     }
-
-    const loadUsers=()=>{
+    const updateAfterDel = (users) => {
+        let tempUsersList = [...users];
+        setUsersList(tempUsersList);
         
+    }
+
+
+    const loadUsers = () => {
+
         const usersFromLocalStorage = localStorage.getItem('usersList');
         //debugger
         if (usersFromLocalStorage) {
-            setUsersList(JSON.parse(usersFromLocalStorage));            
+            setUsersList(JSON.parse(usersFromLocalStorage));
         }
     }
 
@@ -51,7 +57,7 @@ export default function Main() {
 
     //runs foreach update in the usersList
     useEffect(() => {
-        localStorage.setItem('usersList', JSON.stringify(usersList));        
+        localStorage.setItem('usersList', JSON.stringify(usersList));
     }, [usersList]);
 
 
@@ -60,11 +66,11 @@ export default function Main() {
     return (
 
         <Routes>
-            <Route path='/' element={<Login users={usersList}/>}/> 
-            <Route path='/RegisterFields' element={<RegisterFields send2Parent={getUserFromChild}/>}/>
-            <Route path='/Profile' element={<Profile/>}/> 
-            <Route path='/EditDetails' element={<EditDetails send2ParentEditedUser={updateUsersList}/>}/>
-            <Route path='/SystemAdmin' element={<SystemAdmin users={usersList}/>}/> 
+            <Route path='/' element={<Login users={usersList} />} />
+            <Route path='/RegisterFields' element={<RegisterFields send2Parent={getUserFromChild} />} />
+            <Route path='/Profile' element={<Profile />} />
+            <Route path='/EditDetails' element={<EditDetails send2ParentEditedUser={updateUsersList} />} />
+            <Route path='/SystemAdmin' element={<SystemAdmin users={usersList} deleteUserinPar={updateAfterDel} />} />
         </Routes>
     )
 }
