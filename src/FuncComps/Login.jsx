@@ -35,7 +35,7 @@ export default function Login(props) {
     };
 
     const loginUser = () => {
-    debugger
+    
         if (userName.name == "admin" && password.pw == "ad12343211ad") {
             Swal.fire({
                 icon: "success",

@@ -5,17 +5,26 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2';
 import { Avatar, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function EditDetails(props) {
+  const navigate=useNavigate();
 
   let userInSession = JSON.parse(sessionStorage.getItem('connectedUser'));
 
   const fixDate = (date) => {
 
     let parts = date.toString().split('.');
+    console.log(parts)
+    if (parts.length==1) {
+      return date;
+    }
     if (parts[1].length != 2) {
       parts[1] = "0" + parts[1];
+    }
+    if (parts[0].length != 2) {
+      parts[0] = "0" + parts[0];
     }
 
     let chosenDate = parts[2] + '-' + parts[1] + '-' + parts[0];
@@ -259,9 +268,13 @@ export default function EditDetails(props) {
       
       //send user obj to add it to users list
       props.send2ParentEditedUser(user);
+      updateSession(user);
+      navigate('/Profile');
     }
   }
-
+  const updateSession=(updateduser)=>{
+    sessionStorage.setItem("connectedUser",JSON.stringify(updateduser))
+  }
 
 
 

@@ -29,6 +29,10 @@ export default function SystemAdmin(props) {
 
   const rows = createRows(users);
 
+  const Edituser=()=>{
+    
+  }
+
   return (
     <>
       <TableContainer component={Paper}>
