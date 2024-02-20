@@ -28,12 +28,15 @@ export default function SystemAdmin(props) {
 
   const rows = createRows(users);
 
-  const editUser = (userMail) => {
+  const updateSession = (user) => {
+    sessionStorage.setItem("connectedUser", JSON.stringify(user));
+  }
+
+  const editUser = (userMail) => () => {
     let editUser = users.find(user => user.userEmail === userMail);
-    sessionStorage.setItem("", JSON.stringify(editUser));
-    navigate('/EditDetails');
-
-
+    updateSession(editUser);
+    let str = '/SystemAdmin';
+    navigate('/EditDetails', { state: str });
   }
   const deleteUser = (userMail) => {
 

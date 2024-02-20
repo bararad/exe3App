@@ -16,9 +16,8 @@ export default function EditDetails(props) {
   let userInSession = JSON.parse(sessionStorage.getItem('connectedUser'));
   
   const fixDate = (date) => {
-
+    
     let parts = date.toString().split('.');
-    console.log(parts)
     if (parts.length==1) {
       return date;
     }

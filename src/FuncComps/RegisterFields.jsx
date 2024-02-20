@@ -140,7 +140,6 @@ export default function RegisterFields(props) {
     //validation for user date of birth
     const validateUserDate = (e) => {
         let d = e.target.value;
-
         const birthDate = new Date(d)
         const today = new Date();
 
@@ -161,6 +160,7 @@ export default function RegisterFields(props) {
         //console.log(formattedBirthDate);
         if (age >= 18 && age <= 120) {
             setUser(prev => ({ ...prev, userDofBirth: formattedBirthDate.toLocaleDateString() }));
+            console.log('date chosen',formattedBirthDate.toLocaleDateString());
             setUserError(prev => ({ ...prev, userDofBirth: false }));
             setUserErrorMsg(prev => ({ ...prev, userDofBirth: '' }));
         } else {
