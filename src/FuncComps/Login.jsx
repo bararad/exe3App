@@ -62,7 +62,7 @@ export default function Login(props) {
             let founduser = users.find(user => user.userName === userName.name && user.userPassword === password.pw);
             if (founduser) {
                 console.log('User with matching username and password exists.');
-                sessionStorage.setItem('connectedUser', JSON.stringify(founduser));
+
                 clearFields();
                 Swal.fire({
                     icon: "success",
